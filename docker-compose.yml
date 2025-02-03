@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: tobiloba500
+      POSTGRES_DB: scelloo_ecommerce
+    ports:
+      - '5432:5432'
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:tobiloba500@db:5432/scelloo_ecommerce
